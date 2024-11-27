@@ -1,0 +1,183 @@
+<html>
+ <head>
+  <title>
+   Login and Sign Up Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .auth-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .auth-container h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .auth-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .auth-container form .mb-4 {
+            margin-bottom: 1rem;
+        }
+        .auth-container form .mb-4 label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .auth-container form .mb-4 input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .auth-container form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .auth-container form button:hover {
+            background-color: #0056b3;
+        }
+        .auth-container .toggle-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .auth-container .toggle-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .auth-container .toggle-link a:hover {
+            text-decoration: underline;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="auth-container" id="login-container">
+   <h2>
+    Login
+   </h2>
+   <form>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="login-email">
+      Email
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="login-email" placeholder="Email" type="email"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="login-password">
+      Password
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="login-password" placeholder="Password" type="password"/>
+    </div>
+    <button type="button"><a href="home.html">
+    
+     Login</button></a>
+    </button>
+   </form>
+   <div class="toggle-link">
+    <a href="#" onclick="toggleAuth('signup')">
+     Don't have an account? Sign Up
+    </a>
+   </div>
+   <div class="toggle-link">
+    <a href="#" onclick="toggleAuth('admin-login')">
+     Admin Login
+    </a>
+   </div>
+  </div>
+  <div class="auth-container hidden" id="signup-container">
+   <h2>
+    Sign Up
+   </h2>
+   <form>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-name">
+      Name
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-name" placeholder="Name" type="text"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-email">
+      Email
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-email" placeholder="Email" type="email"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-password">
+      Password
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-password" placeholder="Password" type="password"/>
+    </div>
+    <a href="home.html"><button type="button">
+     Sign Up</button> </a>a
+    </button>
+   </form>
+   <div class="toggle-link">
+    <a href="#" onclick="toggleAuth('login')">
+     Already have an account? Login
+    </a>
+   </div>
+  </div>
+  <div class="auth-container hidden" id="admin-login-container">
+   <h2>
+    Admin Login
+   </h2>
+   <form>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="admin-email">
+      Email
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="admin-email" placeholder="Email" type="email"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="admin-password">
+      Password
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="admin-password" placeholder="Password" type="password"/>
+    </div>
+    <button type="button"><a href="home.html"></a>
+    
+     Login
+    </button>
+   </form>
+   <div class="toggle-link">
+    <a href="#" onclick="toggleAuth('login')">
+     User Login
+    </a>
+   </div>
+  </div>
+  <script>
+   function toggleAuth(authType) {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('signup-container').classList.add('hidden');
+            document.getElementById('admin-login-container').classList.add('hidden');
+            
+            if (authType === 'login') {
+                document.getElementById('login-container').classList.remove('hidden');
+            } else if (authType === 'signup') {
+                document.getElementById('signup-container').classList.remove('hidden');
+            } else if (authType === 'admin-login') {
+                document.getElementById('admin-login-container').classList.remove('hidden');
+            }
+        }
+  </script>
+ </body>
+</html>
