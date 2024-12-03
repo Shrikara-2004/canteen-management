@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-blue-600 text-white p-4">
+        <h1 class="text-3xl font-bold text-center">Menu</h1>
+    </header>
+
+    <div class="container mx-auto mt-8">
+        <div class="grid grid-cols-3 gap-8" id="menu-items">
+            <!-- Menu items will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Fetching menu items from the backend using PHP
+        fetch('get_menu.php')
+            .then(response => response.json())
+            .then(data => {
+                const menuContainer = document.getElementById('menu-items');
+                data.forEach(item => {
+                    const menuItem = `
+                    <div class="bg-white shadow-lg rounded-lg p-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-xl font-semibold mt-4">${item.name}</h3>
+                        <p class="text-gray-600 mt-2">${item.description}</p>
+                        <p class="font-bold text-lg mt-2">₹${item.price}</p>
+                        <a href="cart.php?id=${item.id}" class="bg-blue-600 text-white px-6 py-2 rounded-lg mt-4 block text-center">Add to Cart</a>
+                    </div>
+                    `;
+                    menuContainer.innerHTML += menuItem;
+                });
+            });
+    </script>
+
+</body>
+</html>
